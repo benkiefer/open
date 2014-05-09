@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.IO;
 using open.openers;
 
@@ -8,23 +8,11 @@ namespace open
     {
         static void Main(string[] args)
         {
-            if (args.Length == 0) { 
-                Debug.WriteLine("Please specify a file");
+            if (args.Length == 0 || args.Length > 2) { 
+                Console.WriteLine("-e {fileName} | {fileName}");
                 return;
             }
-
-            Process(args);
-        }
-
-        public static void Process(string[] args) {
-            if (args.Length == 1)
-            {
-                Open(null, args[0]);
-            }
-            else
-            {
-                Open(args[0], args[1]);
-            }
+            Open(args.Command(), args.Target());
         }
 
         public static void Open(string command, string target) {
@@ -40,4 +28,25 @@ namespace open
         }
     }
 
+    public static class ArgExtensions {
+        public static string Command(this string[] args) {
+            foreach (var arg in args) {
+                if (arg.StartsWith("-")) {
+                    return arg;
+                }
+            }
+            return null;
+        }
+
+        public static string Target(this string[] args) {
+            foreach (var arg in args)
+            {
+                if (!arg.StartsWith("-"))
+                {
+                    return arg;
+                }
+            }
+            return ".";        
+        }
+    }
 }
