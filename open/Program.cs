@@ -9,7 +9,7 @@ namespace open
         static void Main(string[] args)
         {
             if (args.Length == 0 || args.Length > 2) { 
-                Console.WriteLine("-e {fileName} | {fileName}");
+                Console.WriteLine("usage: -e {file} | {file}");
                 return;
             }
             Open(args.Command(), args.Target());
