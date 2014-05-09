@@ -1,6 +1,6 @@
 ##Open
 
-A tiny version of Mac's open for Windows. [Download It][https://github.com/benkiefer/open/releases/tag/0.0.1], put it on your path, and you're good to go.
+A tiny version of Mac's open for Windows. [Download It](https://github.com/benkiefer/open/releases/tag/0.0.1), put it on your path, and you're good to go.
 
 ###Usage
 
