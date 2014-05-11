@@ -1,4 +1,5 @@
 ﻿using open.Util;
+using open.Openers;
 using NUnit.Framework;
 using Moq;
 using System.IO;

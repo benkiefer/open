@@ -1,7 +1,7 @@
 ﻿using Moq;
 using open.Util;
 using NUnit.Framework;
-using open;
+using open.Openers;
 using System;
 
 namespace open.Test

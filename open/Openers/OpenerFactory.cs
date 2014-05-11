@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using open.Util;
 
-namespace open
+namespace open.Openers
 {
     public class OpenerFactory
     {
