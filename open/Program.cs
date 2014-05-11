@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using open.openers;
 
 namespace open
 {
@@ -16,7 +15,7 @@ namespace open
         }
 
         public static void Open(string command, string target) {
-            var openers = new Opener[] { new Explorer(), new Editor() };
+            var openers = new OpenerFactory().GetOpeners();
 
             foreach (var opener in openers)
             {

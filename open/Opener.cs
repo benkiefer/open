@@ -1,9 +1,17 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using open.Util;
 
-namespace open.openers
+namespace open
 {
     public abstract class Opener {
+        private IProcessRunner _processRunner;
+
+        public Opener(IProcessRunner processRunner)
+        {
+            _processRunner = processRunner;
+        }
+
         abstract public bool CanProcess(string option);
         abstract protected string GetCommand();
 
@@ -13,12 +21,17 @@ namespace open.openers
             if (!info.Exists) {
                 info = new FileInfo(Path.Combine(".", target));
             }
-            
-            Process.Start(GetCommand(), info.FullName);
+
+            _processRunner.Run(GetCommand(), info.FullName);
         }
     }
 
     public class Explorer : Opener {
+
+        public Explorer(IProcessRunner processRunner)
+            : base(processRunner)
+        { }
+
         public override bool CanProcess(string option)
         {
             return option == null;
@@ -32,9 +45,13 @@ namespace open.openers
 
     public class Editor : Opener
     {
+        public Editor(IProcessRunner processRunner)
+            : base(processRunner)
+        { }
+
         public override bool CanProcess(string option)
         {
-            return !string.IsNullOrEmpty(option) && option.Equals("-e", System.StringComparison.CurrentCultureIgnoreCase);
+            return !string.IsNullOrEmpty(option) && option.Equals("-e");
         }
 
         protected override string GetCommand()
